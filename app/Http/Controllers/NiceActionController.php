@@ -12,7 +12,7 @@ class NiceActionController extends Controller
         return view('actions.'. $action, ['name' => $name]);
     }
 
-
+    /*
     public function postNiceAction(Request $request) 
     {
         // Check if the values for select-input named "action" and the input-field named "name" have been given. 
@@ -27,6 +27,20 @@ class NiceActionController extends Controller
         }
         return redirect()->back();
     }
+    */
+
+    public function postNiceAction(Request $request) 
+    {
+        // Define the validations. Required and only accept alphabetics for a name.
+        $this->validate($request, [
+            'action' => 'required',
+            'name' => 'required|alpha'
+        ]);
+        // Return view named "nice" with an array including the "action" and the "name".
+        return view('actions.nice', ['action' => $request['action'], 'name' => $this->transformName($request['name'])]);
+
+    }
+
 
 
     private function transformName($name)

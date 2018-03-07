@@ -41,6 +41,17 @@
             <a href="{{ route('niceaction', ['action' => 'hug']) }}">Hug</a>
             <a href="{{ route('niceaction', ['action' => 'kiss']) }}">Kiss</a>
             <br><br>
+
+            @if (count($errors) > 0)
+                <div>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            {{ $error }}
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('benice') }}" method="POST">
                 <label for="select-action">I want to...</label>
                 <select id="select-action" name="action">
@@ -50,8 +61,9 @@
                 </select>
                 <input type="text" name="name">
                 <button type="submit">Do a nice action!</button>
-            <input type="hidden" value="{{ Session::token() }}" name="_token">
+                <input type="hidden" value="{{ Session::token() }}" name="_token">
             </form>
+            
         </div>
     </div>
 @endsection
