@@ -44,7 +44,11 @@
             @endforeach
         </ul>
 
-        {{ dd($db) }}
+        @if($logged_actions->lastPage() > 1) 
+            @for($i = 1; $i <= $logged_actions->lastPage(); $i++)
+                <a href="{{ $logged_actions->url($i) }}">{{ $i }}</a>
+            @endfor
+        @endif
 
     </div>
 
