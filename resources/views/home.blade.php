@@ -39,6 +39,9 @@
                 @foreach($logged_actions as $logged_action)
                     <li>
                         {{ $logged_action->nice_action->name }}
+                        @foreach($logged_action->nice_action->categories as $category)
+                            {{ $category->name }}
+                        @endforeach
                     </li>
                 @endforeach
             </ul>
