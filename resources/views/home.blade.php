@@ -33,6 +33,18 @@
                 <input type="hidden" value="{{ Session::token() }}" name="_token">
             </form>
             
+            <br><br><br>
+
+            <ul>
+                @foreach($logged_actions as $logged_action)
+                    <li>
+                        {{ $logged_action->nice_action->name }}
+                    </li>
+                @endforeach
+            </ul>
+
+
+            
         </div>
     </div>
 @endsection
