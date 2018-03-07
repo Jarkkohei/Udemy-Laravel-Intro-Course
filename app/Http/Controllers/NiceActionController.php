@@ -14,9 +14,26 @@ class NiceActionController extends Controller
         $actions = NiceAction::orderBy('niceness', 'desc')->get();   //$actions = DB::table('nice_actions')->get();
         
         $logged_actions = NiceActionLog::all();
-        $query = DB::table('nice_action_logs')
-                ->max('id');
-                
+
+        $query = "";
+        /*$query = DB::table('nice_action_logs')
+                    ->insertGetId([
+                        'nice_action_id' => DB::table('nice_actions')->select('id')->where('name', 'Hug')->first()->id
+                    ]);
+        */
+
+        $hug = NiceAction::where('name', 'Hug')->first();
+        if($hug) {
+            $hug->name = "Smile";
+            $hug->update();
+        }
+
+        $wave = NiceAction::where('name', 'Wave')->first();
+        if($wave) {
+            $wave->delete();
+        }
+       
+
         return view('home', ['actions' => $actions, 'logged_actions' => $logged_actions, 'db' => $query]);
     }
 
@@ -27,7 +44,6 @@ class NiceActionController extends Controller
         }
         // Sama kuin sql: (SELECT * FROM NiceAction WHERE 'name' = $action LIMIT 1)
         $nice_action = NiceAction::where('name', $action)->first();
-
         $nice_action_log = new NiceActionLog();
         $nice_action->logged_actions()->save($nice_action_log);
 
