@@ -20,7 +20,7 @@
     </section>
     <section class="edit-quote">
         <h1>Add a Quote</h1>
-        <form>
+    <form method="post" action="{{ route('create') }}">
             <div class="input-group">
                 <label for="author">Your Name: </label>
                 <input type="text" name="author" id="author" placeholder="Your Name">
@@ -32,5 +32,5 @@
             <button type="submit" class="btn">Submit Quote</button>
         <input type="hidden" name="-token" value="{{ Session::token() }}">
         </form>
-    </section>s
+    </section>
 @endsection

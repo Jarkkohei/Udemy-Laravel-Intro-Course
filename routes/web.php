@@ -15,10 +15,15 @@
 
 
 
-Route::get('/', function() {
-    return view('index');
-}
-);
+Route::get('/', [
+    'uses' => 'QuoteController@getIndex',
+    'as' => 'index'
+]);
+
+Route::post('/new', [
+    'uses' => 'QuoteController@postQuote',
+    'as' => 'create'
+]);
 
 /*
 Route::group(['prefix' => 'do'], function() {
