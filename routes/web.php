@@ -11,7 +11,7 @@
 |
 */
 
-
+/*
 Route::get('/',
     [
         'uses' => 'NiceActionController@getHome',
@@ -31,3 +31,4 @@ Route::group(['prefix' => 'do'], function() {
         'as' => 'add_action'
     ]);
 });
+*/
