@@ -11,7 +11,8 @@ class QuoteController extends Controller {
 
     public function getIndex() 
     {
-        return view('index');
+        $quotes =  Quote::all();
+        return view('index', ['quotes' => $quotes]);
     }
 
     public function postQuote(Request $request)

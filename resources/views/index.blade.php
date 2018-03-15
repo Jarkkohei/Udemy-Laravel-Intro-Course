@@ -11,12 +11,19 @@
 @section('content')
     <section class="quotes">
         <h1>Latest Quotes</h1>
-        <article class="quote">
-            <div class="delete"><a href="#">x</a></div>
-            Quote text
-            <div class="info">Created by <a href="#">Jarkko</a> on ...</div>
-        </article>
-        Pagination
+
+        @for($i = 0; $i < count($quotes); $i++)
+            <article class="quote">
+                <div class="delete"><a href="#">x</a></div>
+                    {{ $quotes[$i]->quote }}
+                <div class="info">Created by <a href="#">{{ $quotes[$i]->author->name }}</a> on {{ $quotes[$i]->created_at }}</div>
+            </article>
+        @endfor
+
+        <div class="pagination">
+            Pagination
+        </div>
+        
     </section>
     <section class="edit-quote">
         <h1>Add a Quote</h1>
@@ -30,7 +37,7 @@
                 <textarea name="quote" id="quote" rows="5" placeholder="Quote"></textarea>
             </div>
             <button type="submit" class="btn">Submit Quote</button>
-        <input type="hidden" name="-token" value="{{ Session::token() }}">
+        <input type="hidden" name="_token" value="{{ Session::token() }}">
         </form>
     </section>
 @endsection
