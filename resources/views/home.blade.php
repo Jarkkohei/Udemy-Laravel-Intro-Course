@@ -1,5 +1,10 @@
 @extends('layouts.master')
 
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
 @section('content')
     
     <div class="centered">
@@ -27,7 +32,7 @@
             <label for="niceness">Niceness</label>
             <input type="number" name="niceness" id="niceness">
 
-            <button type="submit">Create a nice action!</button>
+            <button type="submit" onClick="send(event)">Create a nice action!</button>
             <input type="hidden" value="{{ Session::token() }}" name="_token">
         </form>
         
@@ -49,6 +54,18 @@
                 <a href="{{ $logged_actions->url($i) }}">{{ $i }}</a>
             @endfor
         @endif
+
+        <script type="text/javascript">
+            function send(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('add_action') }}",
+                    data: { name: $("#name").val(), niceness: $('#niceness').val(), _token: "{{ Session::token() }}" }
+                });
+
+            }
+        </script>
 
     </div>
 
