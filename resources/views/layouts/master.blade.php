@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ URL::to('css/main.css') }}">
-    <!-- for cloud9 <link rel="stylesheet" href="{{ URL::secure('css/main.css') }}"> -->
     @yield('styles')
 </head>
 <body>

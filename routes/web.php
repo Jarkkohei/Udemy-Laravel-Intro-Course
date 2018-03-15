@@ -14,15 +14,13 @@
 
 
 
-/*
-Route::get('/',
-    [
-        'uses' => 'NiceActionController@getHome',
-        'as' => 'home'
-    ]
+
+Route::get('/', function() {
+    return view('index');
+}
 );
 
-
+/*
 Route::group(['prefix' => 'do'], function() {
     Route::get('/{action}}/{name?}', [
         'uses' => 'NiceActionController@getNiceAction',
