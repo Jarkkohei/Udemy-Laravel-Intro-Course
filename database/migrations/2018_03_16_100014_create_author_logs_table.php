@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuoteLogsTable extends Migration
+class CreateAuthorLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateQuoteLogsTable extends Migration
      */
     public function up()
     {
-        //  Changed the default Laravel plural-style name 'quote_logs' to singular 'quote_log'.
-        Schema::create('quote_log', function (Blueprint $table) {
+        //  Changed the default Laravel plural-style name 'author_logs' to singular 'author_log'.
+        Schema::create('author_log', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-
-            //  Added the string-type column named 'author'.
             $table->string('author');
         });
     }
@@ -30,7 +28,7 @@ class CreateQuoteLogsTable extends Migration
      */
     public function down()
     {
-        //  Changed the default Laravel plural-style name 'quote_logs' to singular 'quote_log'.
-        Schema::dropIfExists('quote_log');
+        //  Changed the default Laravel plural-style name 'author_logs' to singular 'author_log'.
+        Schema::dropIfExists('author_log');
     }
 }
