@@ -57,15 +57,24 @@
     <section class="edit-quote">
         <h1>Add a Quote</h1>
     <form method="post" action="{{ route('create') }}">
+
             <div class="input-group">
                 <label for="author">Your Name: </label>
                 <input type="text" name="author" id="author" placeholder="Your Name">
             </div>
+
+            <div class="input-group">
+                <label for="author">Your E-mail: </label>
+                <input type="text" name="email" id="email" placeholder="Your E-mail">
+            </div>
+
             <div class="input-group">
                 <label for="quote">Your Quote: </label>
                 <textarea name="quote" id="quote" rows="5" placeholder="Quote"></textarea>
             </div>
+
             <button type="submit" class="btn">Submit Quote</button>
+
         <input type="hidden" name="_token" value="{{ Session::token() }}">
         </form>
     </section>
