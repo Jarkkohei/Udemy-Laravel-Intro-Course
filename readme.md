@@ -1,3 +1,6 @@
+Add your mailtrap username and password as "MAIL_USERNAME" and "MAIL_PASSWORD" in the ".env"-file.
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
