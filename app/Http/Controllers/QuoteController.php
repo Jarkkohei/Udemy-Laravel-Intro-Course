@@ -15,11 +15,11 @@ class QuoteController extends Controller {
             $quote_author = Author::where('name', $author)->first();
 
             if($quote_author) {
-                $quotes = $quote_author->quotes()->orderBy('created_at', 'desc')->get();
+                $quotes = $quote_author->quotes()->orderBy('created_at', 'desc')->paginate(6);
             }
             
         } else {
-            $quotes =  Quote::orderBy('created_at', 'desc')->get();
+            $quotes =  Quote::orderBy('created_at', 'desc')->paginate(6);
         }
 
         return view('index', ['quotes' => $quotes]);
