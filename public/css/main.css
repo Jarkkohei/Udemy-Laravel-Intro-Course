@@ -6,13 +6,13 @@ body {
 }
 
 a {
-    color: salmon;
+    color: lightblue;
     text-decoration: none;
 }
 
 a:hover,
 a:active {
-    color: red;
+    color: blue;
 }
 
 h3 {
@@ -27,10 +27,10 @@ h3 {
 .btn {
     display: inline-block;
     box-sizing: border-box;
-    border: 1px solid red;
+    border: 1px solid blue;
     border-radius: 3px;
     padding: 4px 6px;
-    background-color: red;
+    background-color: blue;
     color: #fff;
     transition: background-color 0.3s;
 }
@@ -50,7 +50,7 @@ h3 {
 .btn:hover,
 .btn:active {
     background-color: #fff;
-    color: red;
+    color: blue;
 }
 
 .social-slider {
@@ -59,7 +59,7 @@ h3 {
     position: fixed;
     left: 0;
     top: 25vh;
-    background-color: salmon;
+    background-color: lightblue;
     box-shadow: 1px 1px 1px darkgray;
 }
 
@@ -68,7 +68,7 @@ h3 {
     box-shadow: 0 2px 2px lightgray;
     text-align: center;
     font-size: 28px;
-    background-color: salmon;
+    background-color: lightblue;
 }
 
 .main-nav ul,
@@ -97,7 +97,7 @@ h3 {
 .main-nav li:hover a,
 .main-nav a:hover,
 .main-nav a:active {
-    color: salmon;
+    color: lightblue;
 }
 
 .active {
@@ -105,7 +105,7 @@ h3 {
 }
 
 .active a {
-    color: salmon;
+    color: lightblue;
 }
 
 .main-footer {
@@ -115,7 +115,7 @@ h3 {
 }
 
 .blog-post {
-    border: 2px solid salmon;
+    border: 2px solid lightblue;
     border-radius: 8px 0 8px 8px;
     padding: 16px;
     margin-bottom: 32px;
