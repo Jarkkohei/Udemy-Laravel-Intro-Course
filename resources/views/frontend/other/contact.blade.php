@@ -5,7 +5,7 @@
 @endsection
 
 @section('styles')
-    <link rel="stylesheet" href="{{ URL::to('css/form.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/form.css') }}">
 @endsection
 
 @section('content')
