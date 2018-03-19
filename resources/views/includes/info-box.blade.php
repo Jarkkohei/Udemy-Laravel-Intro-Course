@@ -1,5 +1,5 @@
 @section('styles')
-    <link rel="stylesheet" href="{{ URL::to('src/css/common.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/common.css') }}">
 @append
 
 @if(Session::has('fail'))
