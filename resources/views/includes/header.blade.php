@@ -1,4 +1,9 @@
-<a href="{{ route('admin.login') }}">Admin</a>
-@if(Auth::check())
-    <a href="{{ route('admin.logout') }}">Logout</a>
-@endif
+<header>
+    <nav>
+        <ul>
+        <li><a href="{{ route('blog.index') }}">Blog</a></li>
+        <li><a href="{{ route('about') }}">About me</a></li>
+        <li><a href="{{ route('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
