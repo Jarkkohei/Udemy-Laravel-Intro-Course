@@ -12,7 +12,17 @@ class PostController extends Controller
     public function getBlogIndex() 
     {
         //  Fetch posts and paginate
-        return view('frontend.blog.index');
+        $posts = Post::paginate(5);
+        foreach($posts as $post) {
+            $post->body = $this->shortenText($post->body, 20);
+        }
+        return view('frontend.blog.index', ['posts' => $posts]);
+    }
+
+    public function getPostIndex() 
+    {
+        $posts = Post::paginate(5);
+        return view('admin.blog.index', ['posts' => $posts]);
     }
 
     public function getSinglePost($post_id, $end = 'frontend') 
@@ -41,5 +51,16 @@ class PostController extends Controller
         //  Attaching categories
 
         return redirect()->route('admin.index')->with(['success' => 'Post successfully created.']);
+    }
+
+    //  Shorten the text but not in middle of the word.
+    private function shortenText($text, $words_count) 
+    {
+        if(str_word_count($text, 0) > $words_count) {
+            $words = str_word_count($text, 2);
+            $position = array_keys($words);
+            $text = substr($text, 0, $position[$words_count]) . '...';
+        }
+        return $text;
     }
 }
