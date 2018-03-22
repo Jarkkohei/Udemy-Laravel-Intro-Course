@@ -9,16 +9,18 @@ var docReady = setInterval(function() {
     //  Get the <div> with the class "edit" from every category-iteration as an array.
     var editSections = document.getElementsByClassName('edit');
 
-    //  For each category-iterations add the eventlistener for the "Edit" <a>.
+    //  For each category-iterations add the eventlisteners for the "Edit" and "Delete" <a>-elements.
     for(var i=0; i < editSections.length;i++) {
         editSections[i].firstElementChild.firstElementChild.children[1].firstChild.addEventListener('click', startEdit);
+        editSections[i].firstElementChild.firstElementChild.children[2].firstChild.addEventListener('click', startDelete);
     }
 
     //  Get the first element of the document with a class of 'btn' and add a click-event which fires the 'createNewCategory'-funtion.
     document.getElementsByClassName('btn')[0].addEventListener('click', createNewCategory);
 }, 100);
 
-//  Create new category
+
+//  "Create new category" clicked
 function createNewCategory(event) {
     event.preventDefault();
     var name = event.target.previousElementSibling.value;
@@ -29,12 +31,15 @@ function createNewCategory(event) {
     ajax("POST", "/admin/blog/category/create", "name=" + name, newCategoryCreated, [name]);
 }
 
-//  Callback function triggered by the 'ajax'-funtion.
+
+//  Callback function triggered by the 'ajax'-funtion in the "createNewCategory"-funtion.
 function newCategoryCreated(params, success, responseObj) {
     //  Reload the page.
     location.reload();
 }
 
+
+//  "Edit" clicked.
 function startEdit(event) {
     event.preventDefault();
     //  Cnahge the text to "Save".
@@ -56,6 +61,8 @@ function startEdit(event) {
     event.target.addEventListener('click', saveEdit);
 }
 
+
+//  "Save" clicked.
 function saveEdit(event) {
     event.preventDefault();
     //  Get the <li>-element.
@@ -73,6 +80,8 @@ function saveEdit(event) {
     ajax("POST", "/admin/blog/categories/update", "name=" + categoryName + "&category_id=" + categoryId, endEdit, [event]);
 }
 
+
+//  Category saved.
 function endEdit(params, success, responseObj) {
     var event = params[0];
     
@@ -100,6 +109,43 @@ function endEdit(params, success, responseObj) {
     //  Reset the original eventListener.
     event.target.addEventListener('click', startEdit);
 }
+
+
+//  "Delete" clicked
+function startDelete(event) {
+    //  Enable this if doing more tan just calling the "deleteCategory()"-function. "event.preventDefault();"
+    //  Maybe open a modal here to check if the user really wants to delete the category.
+    //  Maybe use confirm with alert to do the same.
+    deleteCategory(event);
+}
+
+
+//  Deleting approved
+function deleteCategory(event) {
+    event.preventDefault();
+    //  Remove the eventListener to prevent multiple clicks.
+    event.target.removeEventListener('click', startDelete);
+    //  Get the categoryId saved into the value of the "data-id" in the <div>-element with the class "category-info".  
+    var categoryId = event.path[4].previousElementSibling.dataset['id'];
+    //  Make the Http-request and pass the <article>-element to be deleted as a parameter.
+    ajax("GET", "/admin/blog/category/" + categoryId + "/delete", null, categoryDeleted, [event.path[5]]);
+}
+
+
+//  
+function categoryDeleted(params, success, responseObj) {
+    //  Get the <article>-element from the params.
+    var article = params[0];
+    //  If article found, flash the backgroudColor to "#ffc4be" bfore removing it from the DOM;
+    if(success) {
+        article.style.backgroundColor = "#ffc4be";
+        setTimeout(function() {
+            article.remove();
+            location.reload();
+        }, 300);
+    }
+}
+
 
 //  Deal with the HTTP-protocol
 function ajax(method, url, params, callback, callbackParams) {

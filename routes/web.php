@@ -93,4 +93,9 @@ Route::group([
         'uses' => 'PostController@getDeletePost',
         'as' => 'admin.blog.post.delete'
     ]);
+
+    Route::get('/blog/category/{category_id}/delete', [
+        'uses' => 'CategoryController@getDeleteCategory',
+        'as' => 'admin.blog.category.delete'
+    ]);
 });
