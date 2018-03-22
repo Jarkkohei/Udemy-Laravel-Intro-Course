@@ -1,4 +1,4 @@
-//  Check every 100ms if the documant os loaded.
+//  Check every 100ms if the document is loaded.
 var docReady = setInterval(function() {
     if(document.readyState != "complete") {
         return;
