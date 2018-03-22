@@ -26,7 +26,6 @@
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
-                    <option value="Dummy Category ID">Dummy category</option>
                 </select>
                 <button type="button" class="btn">Add Category</button>
                 <div class="added-categories">
