@@ -8,7 +8,7 @@
 @section('content')
     <div class="container">
         <section id="category-admin">
-            <form action="" method="post">
+            <form action="" method="POST">
                 <div class="input-group">
                     <label for="name">Category name: </label>
                     <input type="text" name="name" id="name">

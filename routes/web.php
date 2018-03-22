@@ -69,6 +69,11 @@ Route::group([
         'as' => 'admin.blog.post.create'
     ]);
 
+    Route::post('/blog/category/create', [
+        'uses' => 'CategoryController@postCreateCategory',
+        'as' => 'admin.blog.category.create'
+    ]);
+
     Route::get('/blog/post/{post_id}/edit', [
         'uses' => 'PostController@getUpdatePost',
         'as' => 'admin.blog.post.edit'
