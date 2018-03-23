@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ContactMessage;
 
+use App\Events\MessageSent;
+use Illuminate\Support\Facades\Event;
+
 class ContactMessageController extends Controller 
 {
     public function getContactIndex()
@@ -28,6 +31,7 @@ class ContactMessageController extends Controller
         $message->subject = $request['subject'];
         $message->body = $request['message'];
         $message->save();
+        Event::fire(new MessageSent($message));
 
         return redirect()->route('contact')->with(['success' => 'Message was sent successfully.']);
     }

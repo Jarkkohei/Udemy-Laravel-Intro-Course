@@ -10,6 +10,8 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
+use App\ContactMessage;
+
 class MessageSent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -19,9 +21,9 @@ class MessageSent
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ContactMessage $message)
     {
-        //
+        $this->message = $message;
     }
 
     /**

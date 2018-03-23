@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\MessageSent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
 
 class SendNotification
 {
@@ -26,6 +27,11 @@ class SendNotification
      */
     public function handle(MessageSent $event)
     {
-        //
+        $contact_message = $event->message;
+        Mail::send('email.contact-message-notification', ['contact_message' => $contact_message], function($m) use ($contact_message){
+            $m->from('info@laravel-udemy.course.com', 'Laravel Udemy Course');
+            $m->to('info@laravel-udemy.course.com', 'Laravel Udemy Course Admin');
+            $m->subject('New contact message from: ' . $contact_message->email);
+        });
     }
 }
