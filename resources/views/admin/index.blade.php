@@ -55,26 +55,28 @@
             </header>
             <section>
                 <ul>
-                    <!-- If no Messages -->
-                    <li>No Messages</li>
+                    @if(count($contact_messages) == 0)
+                        <li>No Messages</li>
+                    @endif
 
-                    <!-- If Messages -->
-                    <li>
-                        <article data-message="Body" data-id="ID">
-                            <div class="message-info">
-                                <h3>Message Subject</h3>
-                                <span class="info">Sender: ... | Date</span>
-                            </div>
-                            <div class="edit">
-                                <nav>
-                                    <ul>
-                                        <li><a href="">View</a></li>
-                                        <li><a href="" class="danger">Delete</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </article>
-                    </li>
+                    @foreach($contact_messages as $contact_message)
+                        <li>
+                            <article data-message="{{ $contact_message->body }}" data-id="{{ $contact_message->id }}">
+                                <div class="message-info">
+                                    <h3>{{ $contact_message->subject }}</h3>
+                                    <span class="info">Sender: {{ $contact_message->sender }} | {{ $contact_message->created_at }}</span>
+                                </div>
+                                <div class="edit">
+                                    <nav>
+                                        <ul>
+                                            <li><a href="">View</a></li>
+                                            <li><a href="" class="danger">Delete</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </article>
+                        </li>
+                    @endforeach
                 </ul>
             </section>
         </div>
