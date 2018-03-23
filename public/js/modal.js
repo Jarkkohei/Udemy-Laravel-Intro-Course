@@ -22,7 +22,7 @@ function modalOpen(event) {
 }
 
 function modalClose(event) {
-    event-preventDefault();
+    event.preventDefault();
 
     //  Get the first element of the document with the class "modal".
     var modal = document.getElementsByClassName('modal')[0];
@@ -35,6 +35,6 @@ function modalClose(event) {
     //  Reset the modals initial styling and hide it and the background.
     modal.style.top = "10%";
     modal.style.display = "none";
-    var background = document.getElementsByClassName('background')[0];
+    var background = document.getElementsByClassName('modal-background')[0];
     background.remove();
 }
