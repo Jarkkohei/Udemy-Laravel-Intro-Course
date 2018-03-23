@@ -76,10 +76,12 @@ class PostController extends Controller
         $post->body = $request['body'];
         $post->save();
 
+        //  If the Post already has categories attached to it,
         if(strlen($request['categories']) > 0) {
             //  Make an array from the serialized object.
             $categoryIDs = explode(',', $request['categories']);
 
+             //  update the attached categories to the Post.
             foreach($categoryIDs as $categoryID) {
                 $post->categories()->attach($categoryID);
             }
