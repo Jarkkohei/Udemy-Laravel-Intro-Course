@@ -16,6 +16,12 @@ Route::get('/', [
     'as' => 'blog.index'
 ]);
 
+//  TÄMÄ PITI LISÄTÄ JOTTA UNATHORIZED RE-DIRECT TOIMII.
+Route::get('/', [
+    'uses' => 'PostController@getBlogINdex',
+    'as' => 'index' 
+]);
+
 Route::get('/blog', [
     'uses' => 'PostController@getBlogIndex',
     'as' => 'blog.index'
@@ -53,7 +59,8 @@ Route::post('/admin/login', [
 
 
 Route::group([
-    'prefix' => '/admin'
+    'prefix' => '/admin',
+    'middleware' => 'auth' 
 ], function() {
     Route::get('/', [
         'uses' => 'AdminController@getIndex',
